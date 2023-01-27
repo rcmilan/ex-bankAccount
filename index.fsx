@@ -22,6 +22,7 @@ module MoneyModule =
         static member (-)(left: Money, right: int32) = left - (Convert.ToDecimal(right) / 100m)
 
         static member (+)(left: Money, right: Money) = left + right.Amount
+        // static member (-)(left: Money, right: Money) = left - right.Amount // existe dinheiro negativo?
 
         member this.WithCurrency = this.Currency.ToString() + " " + this.Amount.ToString()
         member this.InCents = Convert.ToInt32(this.Amount * 100m)
@@ -30,12 +31,17 @@ module MoneyModule =
 open System
 open MoneyModule
 
-let anyAmount: Money =
+let amount1: Money =
+    { Amount = 10.00m
+      Currency = BRL
+      ValidUntil = DateTime.Now }
+      
+let amount2: Money =
     { Amount = 10.00m
       Currency = BRL
       ValidUntil = DateTime.Now }
 
-let a = anyAmount + -10
+let a = amount1 + amount2
 let x = a.WithCurrency
 
 printfn "%s" x
