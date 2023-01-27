@@ -16,10 +16,14 @@ module MoneyModule =
             { Amount = left.Amount + right
               Currency = left.Currency
               ValidUntil = left.ValidUntil }
-        static member (+)(left: Money, right: int32) = left + (Convert.ToDecimal(right) / 100m)
+
+        static member (+)(left: Money, right: int32) =
+            left + (Convert.ToDecimal(right) / 100m)
 
         static member (-)(left: Money, right: decimal) = left + -right
-        static member (-)(left: Money, right: int32) = left - (Convert.ToDecimal(right) / 100m)
+
+        static member (-)(left: Money, right: int32) =
+            left - (Convert.ToDecimal(right) / 100m)
 
         static member (+)(left: Money, right: Money) = left + right.Amount
         // static member (-)(left: Money, right: Money) = left - right.Amount // existe dinheiro negativo?
@@ -35,7 +39,7 @@ let amount1: Money =
     { Amount = 10.00m
       Currency = BRL
       ValidUntil = DateTime.Now }
-      
+
 let amount2: Money =
     { Amount = 10.00m
       Currency = BRL
