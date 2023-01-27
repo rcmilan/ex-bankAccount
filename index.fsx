@@ -19,7 +19,7 @@ module MoneyModule =
         static member (+)(left: Money, right: int32) = left + (Convert.ToDecimal(right) / 100m)
 
         static member (-)(left: Money, right: decimal) = left + -right
-        static member (-)(left: Money, right: int) = left - (Convert.ToDecimal(right) / 100m)
+        static member (-)(left: Money, right: int32) = left - (Convert.ToDecimal(right) / 100m)
 
         static member (+)(left: Money, right: Money) = left + right.Amount
         static member (-)(left: Money, right: Money) = left - right.Amount
