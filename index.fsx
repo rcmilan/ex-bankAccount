@@ -22,7 +22,6 @@ module MoneyModule =
         static member (-)(left: Money, right: int32) = left - (Convert.ToDecimal(right) / 100m)
 
         static member (+)(left: Money, right: Money) = left + right.Amount
-        static member (-)(left: Money, right: Money) = left - right.Amount
 
         member this.WithCurrency = this.Currency.ToString() + " " + this.Amount.ToString()
         member this.InCents = Convert.ToInt32(this.Amount * 100m)
