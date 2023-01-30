@@ -31,6 +31,17 @@ module MoneyModule =
         member this.WithCurrency = this.Currency.ToString() + " " + this.Amount.ToString()
         member this.InCents = Convert.ToInt32(this.Amount * 100m)
 
+module AccountModule =
+    open MoneyModule
+
+    type Account =
+        { Money: Money[] }
+
+        member this.Total =
+            this.Money
+            |> Array.filter (fun (m: Money) -> m.IsValid)
+            |> Array.sumBy (fun (m: Money) -> m.Amount)
+
 // Main
 open System
 open MoneyModule
@@ -41,7 +52,7 @@ let amount1: Money =
       ValidUntil = DateTime.Now }
 
 let amount2: Money =
-    { Amount = 10.00m
+    { Amount = 0.25m
       Currency = BRL
       ValidUntil = DateTime.Now }
 
